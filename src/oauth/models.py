@@ -4,7 +4,7 @@ from src.base.services import get_path_upload_avatar, validate_size_image
 
 
 class AuthUser(models.Model):
-    "Модель пользователя на платформе"
+    """Модель пользователя на платформе"""
     email = models.EmailField(max_length=150, unique=True)
     join_date = models.DateTimeField(auto_now_add=True)
     country = models.CharField(max_length=30, blank=True, null=True)
@@ -20,7 +20,7 @@ class AuthUser(models.Model):
 
     @property
     def is_authenticated(self):
-        "Всегда возвращает True. Это способ узнать был ли пользователь аутентифицирован"
+        """Всегда возвращает True. Это способ узнать был ли пользователь аутентифицирован"""
         return True
 
     def __str__(self):
@@ -28,7 +28,7 @@ class AuthUser(models.Model):
 
 
 class Follower(models.Model):
-    "Модель подписчиков"
+    """Модель подписчиков"""
     user = models.ForeignKey(AuthUser, on_delete=models.CASCADE, related_name='owner')
     subscriber = models.ForeignKey(AuthUser, on_delete=models.CASCADE, related_name='subscribers')
 
@@ -37,7 +37,7 @@ class Follower(models.Model):
 
 
 class SocialLink(models.Model):
-    "Модель ссылок на соц. сети пользователя"
+    """Модель ссылок на соц. сети пользователя"""
     user = models.ForeignKey(AuthUser, on_delete=models.CASCADE, related_name='social_links')
     link = models.URLField(max_length=100)
 
